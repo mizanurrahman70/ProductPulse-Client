@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { WithContext as ReactTags } from 'react-tag-input';
+import { WithContext as ReactTags } from "react-tag-input";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const KeyCodes = {
   comma: 188,
@@ -11,15 +13,14 @@ const delimiters = [KeyCodes.comma, ...KeyCodes.enter];
 
 const AddItem = () => {
   const { user } = useAuth();
-  const [tags, setTags] = useState([
-    { id: 'example', text: 'Example Tag' }
-  ]);
+  const axiosPublic = useAxiosPublic();
+  const [tags, setTags] = useState([{ id: "example", text: "Example Tag" }]);
 
-  const handleDelete = i => {
+  const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
 
-  const handleAddition = tag => {
+  const handleAddition = (tag) => {
     setTags([...tags, tag]);
   };
 
@@ -30,7 +31,7 @@ const AddItem = () => {
     setTags(newTags);
   };
 
-  const ItemAddHandle = e => {
+  const ItemAddHandle = (e) => {
     e.preventDefault();
     const form = e.target;
     const product_name = form.product_name.value;
@@ -40,7 +41,7 @@ const AddItem = () => {
     const product_ownner_email = form.product_ownner_email.value;
     const product_details = form.product_details.value;
     const External_Links = form.External_Links.value;
-    const product_tags = tags.map(tag => tag.text); // Get the text of each tag
+    const product_tags = tags.map((tag) => tag.text); // Get the text of each tag
 
     const product = {
       product_name,
@@ -50,8 +51,20 @@ const AddItem = () => {
       product_ownner_email,
       product_details,
       External_Links,
-      product_tags // Add tags to the product object
+      product_tags, // Add tags to the product object
     };
+    axiosPublic.post("/product", product).then((res) => {
+      console.log(res.data);
+      if (res.data.insertedId) {
+      }
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
 
     console.log(product);
   };
@@ -59,7 +72,10 @@ const AddItem = () => {
   return (
     <div>
       <div>
-        <form onSubmit={ItemAddHandle} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form
+          onSubmit={ItemAddHandle}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        >
           <label className="form-control w-full my-6">
             <div className="label">
               <span className="label-text">Product Name*</span>
@@ -169,4 +185,3 @@ const AddItem = () => {
 };
 
 export default AddItem;
-
