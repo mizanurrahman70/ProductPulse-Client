@@ -7,6 +7,7 @@ import Regester from "../Pages/Regester/Regester";
 import Desboard from "../Desboard/Desboard";
 import ProductCard from "../Components/ProductCard";
 import AddItem from "../Pages/Add Item/AddItem";
+import Myproduct from "../Pages/My product/Myproduct";
 
 
 const router = createBrowserRouter([
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
       {
         path:'/desboard/addItem',
       element:<AddItem></AddItem>
-      }
+      },
+      {
+        path:'/desboard/my-product',
+      element:<Myproduct></Myproduct>
+      },
 
     ])
 

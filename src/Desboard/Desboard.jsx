@@ -16,7 +16,7 @@ const Desboard = () => {
             <NavLink to='/desboard/addItem'>Add Product</NavLink>
           </li>
           <li>
-            <NavLink>My Products</NavLink>
+            <NavLink to='/desboard/my-product'>My Products</NavLink>
           </li>
 
           <div className="divider divider-horizontal"></div>
