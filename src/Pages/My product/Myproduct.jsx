@@ -72,7 +72,7 @@ const Myproduct = () => {
         </td>
         <td>{product?.Upvote || 0}</td>
         <th>
-            <Link to={`/desboard/product_update/${product._id}`}> <button className="btn btn-ghost btn-xs">details</button></Link>
+            <Link to={`/desboard/product_update/${product._id}`}> <button className="btn btn-ghost btn-xs">Edit</button></Link>
          
         </th>
         <th>

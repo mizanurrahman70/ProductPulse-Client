@@ -9,6 +9,11 @@ import ProductCard from "../Components/ProductCard";
 import AddItem from "../Pages/Add Item/AddItem";
 import Myproduct from "../Pages/My product/Myproduct";
 import ProductUpdate from "../Pages/product Update/ProductUpdate";
+import ManageProduct from "../Desboard/Manage product/ManageProduct";
+import ProductDetals from "../Pages/PRODUCT DETAILS/ProductDetals";
+import AllProduct from "../Pages/All Product/AllProduct";
+import RevewsFrom from "../Pages/Revews From/RevewsFrom";
+import ReportedContent from "../Desboard/Reported Content/ReportedContent";
 
 
 const router = createBrowserRouter([
@@ -28,6 +33,19 @@ const router = createBrowserRouter([
    {
     path:'/regester',
     element:<Regester></Regester>
+   },
+   {
+    path:'/all-product',
+    element:<AllProduct></AllProduct>
+   },
+   {
+    path:'/revews',
+    element:<RevewsFrom></RevewsFrom>
+   },
+   {
+    path:'/productdetails/:id',
+    element:<ProductDetals></ProductDetals>,
+    loader:({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
    }
     ]),
   },
@@ -48,6 +66,17 @@ const router = createBrowserRouter([
         path: '/desboard/product_update/:id',
         element: <ProductUpdate />,
         loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
+      },
+     
+      {
+        path: '/desboard/manage-product',
+        element: <ManageProduct />,
+        
+      },
+      {
+        path: '/desboard/reported-content',
+        element: <ReportedContent></ReportedContent>,
+        
       },
 
     ])

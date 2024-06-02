@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const Navber = () => {
@@ -8,10 +8,10 @@ const Navber = () => {
   const listItem = (
     <>
       <li>
-        <a>Home</a>
+       <NavLink to='/'> <a>Home</a></NavLink>
       </li>
       <li>
-        <a>Products</a>
+      <NavLink to='/all-product'><a>Products</a></NavLink>  
       </li>
     </>
   );
