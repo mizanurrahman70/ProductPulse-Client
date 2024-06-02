@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Rating } from "@smastrom/react-rating";
+import Swal from "sweetalert2";
 
 import "@smastrom/react-rating/style.css";
 
@@ -73,6 +74,26 @@ const ProductDetails = () => {
       console.log(res.data);
     });
   }, [loader]);
+  const reportHandle=id=>{
+    console.log(id)
+    const report={report:'Report'}
+    console.log(report)
+    axiosPublic.patch(`/products/${id}`,report)
+    .then(res=>{
+      console.log(res.data)
+      if(res.data.modifiedCount>0){
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "reported",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+      }
+    })
+
+  }
 
   return (
     <>
@@ -89,7 +110,7 @@ const ProductDetails = () => {
             </span>
           </h1>
           <p>{product_details}</p>
-          <button className="w-32 h-14 bg-[#FF4C4C] rounded-lg flex pt-4 gap-1">
+          <button onClick={()=>{reportHandle(_id)}} className="w-32 h-14 bg-[#FF4C4C] rounded-lg flex pt-4 gap-1">
             <h1>
               <BiFlag className="mx-auto text-2xl" />
             </h1>

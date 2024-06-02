@@ -2,9 +2,12 @@ import React from "react";
 import useAllproduct from "../../Hooks/useAllproduct";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ReportedContent = () => {
   const [product, refetch] = useAllproduct();
+  const products = product.filter((pd) => pd.report === "Report");
+  
   const axiosPublic = useAxiosPublic();
   const deleteHandle = (id) => {
     console.log(id);
@@ -47,13 +50,15 @@ const ReportedContent = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {product.map((product, index) => (
+            {products.map((product, index) => (
               <tr key={product._id}>
                 <th>{index + 1}</th>
                 <td>{product.product_name}</td>
 
                 <th>
-                <Link to={`/productdetails/${product._id}`}><button className="btn btn-ghost btn-xs">Details</button></Link>
+                  <Link to={`/productdetails/${product._id}`}>
+                    <button className="btn btn-ghost btn-xs">Details</button>
+                  </Link>
                 </th>
 
                 <th>
