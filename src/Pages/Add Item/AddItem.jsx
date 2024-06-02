@@ -41,6 +41,7 @@ const AddItem = () => {
     const product_ownner_email = form.product_ownner_email.value;
     const product_details = form.product_details.value;
     const External_Links = form.External_Links.value;
+    const date=new Date()
     
     const product_tags = tags.map((tag) => tag.text); // Get the text of each tag
     const status ='panding'
@@ -58,6 +59,7 @@ const AddItem = () => {
       status,
       Upvote,
       Downvote,
+      date,
       product_tags, // Add tags to the product object
     };
     axiosPublic.post("/product", product).then((res) => {

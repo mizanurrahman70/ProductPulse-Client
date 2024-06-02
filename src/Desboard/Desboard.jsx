@@ -13,19 +13,22 @@ const Desboard = () => {
             <NavLink>My Profile</NavLink>
           </li>
           <li>
-            <NavLink to='/desboard/addItem'>Add Product</NavLink>
+            <NavLink to="/desboard/addItem">Add Product</NavLink>
           </li>
           <li>
-            <NavLink to='/desboard/my-product'>My Products</NavLink>
+            <NavLink to="/desboard/my-product">My Products</NavLink>
           </li>
           {/* modaretot  */}
           <li>
-            <NavLink to='/desboard/manage-product'>Product Review Queue
-</NavLink>
+            <NavLink to="/desboard/manage-product">
+              Product Review Queue
+            </NavLink>
           </li>
           <li>
-            <NavLink to='/desboard/reported-content'>Reported Contents
-</NavLink>
+            <NavLink to="/desboard/reported-content">Reported Contents</NavLink>
+          </li>
+          <li>
+            <NavLink to="/desboard/manage-user">Manage Users</NavLink>
           </li>
 
           <div className="divider divider-horizontal"></div>
