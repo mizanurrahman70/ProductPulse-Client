@@ -8,6 +8,7 @@ import Desboard from "../Desboard/Desboard";
 import ProductCard from "../Components/ProductCard";
 import AddItem from "../Pages/Add Item/AddItem";
 import Myproduct from "../Pages/My product/Myproduct";
+import ProductUpdate from "../Pages/product Update/ProductUpdate";
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
       {
         path:'/desboard/my-product',
       element:<Myproduct></Myproduct>
+      },
+      {
+        path: '/desboard/product_update/:id',
+        element: <ProductUpdate />,
+        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
       },
 
     ])
