@@ -14,14 +14,16 @@ const delimiters = [KeyCodes.comma, ...KeyCodes.enter];
 const AddItem = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const [tags, setTags] = useState([{ id: "example", text: "" }]);
+  const [tags, setTags] = useState([]);
 
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
 
   const handleAddition = (tag) => {
-    setTags([...tags, tag]);
+    if (tag.text.trim()) {  // Ensure the tag text is not empty
+      setTags([...tags, tag]);
+    }
   };
 
   const handleDrag = (tag, currPos, newPos) => {
@@ -41,12 +43,12 @@ const AddItem = () => {
     const product_ownner_email = form.product_ownner_email.value;
     const product_details = form.product_details.value;
     const External_Links = form.External_Links.value;
-    const date=new Date()
+    const date = new Date();
     
     const product_tags = tags.map((tag) => tag.text); // Get the text of each tag
-    const status ='panding'
-    const Upvote=0
-    const Downvote=0
+    const status = 'pending';
+    const Upvote = 0;
+    const Downvote = 0;
   
     const product = {
       product_name,
@@ -62,16 +64,26 @@ const AddItem = () => {
       date,
       product_tags, // Add tags to the product object
     };
+
     axiosPublic.post("/product", product).then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
+    }).catch((error) => {
+      console.error("Error adding product:", error);
       Swal.fire({
         position: "top-center",
-        icon: "success",
-        title: "Your work has been saved",
-        showConfirmButton: false,
-        timer: 1500,
+        icon: "error",
+        title: "An error occurred",
+        text: "Unable to add the product",
+        showConfirmButton: true,
       });
     });
 

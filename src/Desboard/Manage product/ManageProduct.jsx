@@ -29,6 +29,28 @@ const ManageProduct = () => {
 
 
   }
+  const featuredHandle=(id,Featured)=>{
+   console.log(id,Featured)
+   const newFeatured={Featured }
+   console.log(newFeatured,id)
+   axiosPublic.patch(`/product/feature/${id}`,newFeatured)
+   .then(res=>{
+    console.log(res.data)
+    if(res.data.modifiedCount>0){
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          refetch()
+    }
+   })
+
+
+
+  }
   const deleteHandle = (id) => {
     console.log(id);
     Swal.fire({
@@ -98,7 +120,7 @@ const ManageProduct = () => {
                
                 
                 <th>
-                  <button className="btn btn-ghost btn-xs">featured</button>
+                  <button onClick={()=>featuredHandle(product._id,"Featured")} className="btn btn-ghost btn-xs">{product?.Featured || 'Feature'}</button>
                 </th>
                 <th>
                   <button

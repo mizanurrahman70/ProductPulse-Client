@@ -9,8 +9,11 @@ const Desboard = () => {
           <h1 className="text-2xl text-white text-center">ProductPulse</h1>
         </div>
         <ul className="menu space-y-2">
+        <li>
+            <NavLink to='/'>Home</NavLink>
+          </li>
           <li>
-            <NavLink>My Profile</NavLink>
+            <NavLink to='/desboard/my-profile'>My Profile</NavLink>
           </li>
           <li>
             <NavLink to="/desboard/addItem">Add Product</NavLink>

@@ -15,6 +15,7 @@ import AllProduct from "../Pages/All Product/AllProduct";
 import RevewsFrom from "../Pages/Revews From/RevewsFrom";
 import ReportedContent from "../Desboard/Reported Content/ReportedContent";
 import ManageUers from "../Desboard/Manage Users/ManageUers";
+import MyProfile from "../Desboard/My profile/MyProfile";
 
 
 const router = createBrowserRouter([
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path:'/desboard/addItem',
       element:<AddItem></AddItem>
+      },
+      {
+        path:'/desboard/my-profile',
+      element:<MyProfile></MyProfile>
       },
       {
         path:'/desboard/my-product',
