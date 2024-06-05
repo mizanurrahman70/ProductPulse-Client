@@ -12,7 +12,12 @@ const Featured = () => {
   const [product,refetch] = useFeatureData();
   const { user } = useAuth();
   console.log(product);
-  const handleUpvote = async (id) => {
+  const handleUpvote = async (id) => {  
+    const findData=product.find((data)=>data._id === id)
+    
+    if(findData.product_ownner_email === user.email){
+      return
+    }
     try {
       const userEmail = { userEmail: user?.email };
       console.log(id,userEmail)
@@ -31,6 +36,11 @@ const Featured = () => {
     }
   };
   const handleDownvote = async (id) => {
+    const findData=product.find((data)=>data._id === id)
+    
+    if(findData.product_ownner_email === user.email){
+      return
+    }
     try {
       const userEmail = { userEmail: user?.email };
       console.log(id,userEmail)

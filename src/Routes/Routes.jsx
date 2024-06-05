@@ -16,6 +16,11 @@ import RevewsFrom from "../Pages/Revews From/RevewsFrom";
 import ReportedContent from "../Desboard/Reported Content/ReportedContent";
 import ManageUers from "../Desboard/Manage Users/ManageUers";
 import MyProfile from "../Desboard/My profile/MyProfile";
+import ManageCoupon from "../Desboard/Manage coupon/ManageCoupon";
+import Coupon from "../Components/Coupon";
+import Payment from "../Desboard/Payment/Payment";
+import CouponUpdate from "../Components/CouponUpdate";
+import StatisticsPage from "../Desboard/Statistics Page/StatisticsPage";
 
 
 const router = createBrowserRouter([
@@ -38,7 +43,8 @@ const router = createBrowserRouter([
    },
    {
     path:'/all-product',
-    element:<AllProduct></AllProduct>
+    element:<AllProduct></AllProduct>,
+   
    },
    {
     path:'/revews',
@@ -48,7 +54,8 @@ const router = createBrowserRouter([
     path:'/productdetails/:id',
     element:<ProductDetals></ProductDetals>,
     loader:({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
-   }
+   },
+  
     ]),
   },
   {
@@ -89,6 +96,31 @@ const router = createBrowserRouter([
         element:<ManageUers></ManageUers>,
         
       },
+      {
+        path: "/desboard/manage-coupon",
+        element:<ManageCoupon></ManageCoupon>,
+        
+      },
+      {
+        path: "/desboard/coupon",
+        element:<Coupon></Coupon>,
+        
+      },
+      {
+        path: "/desboard/payment",
+        element:<Payment></Payment>,
+        
+      },
+      {
+        path: "/desboard/Statistics-Page",
+        element:<StatisticsPage></StatisticsPage>,
+        
+      },
+      {
+        path:'/desboard/coupon-update/:id',
+        element:<CouponUpdate></CouponUpdate>,
+        loader:({ params }) => fetch(`http://localhost:5000/coupons/${params.id}`)
+       }
 
     ])
 

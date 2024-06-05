@@ -50,6 +50,7 @@ const AuthProvider = ({ children }) => {
       const userEmail = carrenUser?.email;
 
       setLoading(false);
+   
       console.log("current user", carrenUser);
       const users = {
         userName: carrenUser?.displayName,
@@ -64,7 +65,24 @@ const AuthProvider = ({ children }) => {
       console.log(users)
       setUser(carrenUser);
       //  user use token
+      if (carrenUser) {
+        // get token and store client
+        const userInfo = { email: carrenUser.email };
+        axiosPublic.post('/jwt', userInfo)
+            .then(res => {
+                if (res.data.token) {
+                    localStorage.setItem('access-token', res.data.token);
+                    setLoading(false);
+                }
+            })
+    }
+    else {
+      
+        localStorage.removeItem('access-token');
+        setLoading(false);
+    }
     });
+   
     return () => {
       unsubsribe();
     };

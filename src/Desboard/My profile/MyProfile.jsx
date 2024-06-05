@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
+import { Link } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const MyProfile = () => {
   const { user } = useAuth();
-  console.log(user);
+  const [paymentData,setPaymentData]=useState()
+  const axiosPublic=useAxiosPublic()
+  console.log(paymentData)
+
+ useEffect(()=>{
+  axiosPublic.get('/payments')
+  .then(res=>{
+   
+   const email= res.data.find((data)=>data.email=== user.email)
+    setPaymentData(email)
+  })
+ },[user,axiosPublic])
+  
+  
   const listArray = [
-    "Custom profile an more",
-    "Custom emoji anywhere",
-    "HD video streaming",
+    "Add unlimited product",
+    "see personal Desboard",
+    "unloack all new featured",
   ];
 
   return (
@@ -89,12 +104,12 @@ const MyProfile = () => {
       </div>
       <div className="mx-auto my-20 max-w-1/2 space-y-6 rounded-lg border-b-2 border-l border-r-2 border-t border-b-[#0084ff] border-l-[#005eb6] border-r-[#0084ff] border-t-[#005eb6] bg-white py-8 pl-8 shadow-md dark:bg-[#18181B]">
         <div className="flex items-center justify-between">
-            <h1 className="w-[35%] text-2xl font-bold tracking-wider text-sky-900 dark:text-[#289DFF] md:text-4xl"><sup className="text-2xl font-black">$</sup>70<sub className="text-sm tracking-tight">/mo</sub></h1>
+            <h1 className="w-[35%] text-2xl font-bold tracking-wider text-sky-900 dark:text-[#289DFF] md:text-4xl"><sup className="text-2xl font-black">$</sup>60<sub className="text-sm tracking-tight">/mo</sub></h1>
             <div className=" w-[65%] rounded-bl-full rounded-tl-full bg-gradient-to-r  from-[#52b7ff] to-[#0084ff] px-4 py-4 md:px-10 md:py-5">
                 <h3 className="font-semibold tracking-wider text-white md:text-xl">STANDARD</h3>
             </div>
         </div>
-        <p className="font-semibold text-sky-900 dark:text-[#4BB3FF]/90">Enjoy limitless use with interactive export use</p>
+        <p className="font-semibold text-sky-900 dark:text-[#4BB3FF]/90"> Our MemberShip service</p>
         <ul className="space-y-3">
             {
                 // use your own array
@@ -106,8 +121,17 @@ const MyProfile = () => {
                 ))
             }
         </ul>
+        <div className="relative w-max">
+        <input defaultValue={'$60'} disabled className="peer h-[50px] border-b border-[#1B8EF8] bg-blue-100 px-2 pt-4 text-[#1B8EF8] focus:outline-none dark:bg-blue-500/20" type="text" id="navigate_ui_input_55" placeholder=""/>
+        <label className="absolute left-2 top-0.5 text-xs text-[#1B8EF8] duration-300 peer-placeholder-shown:left-2 peer-placeholder-shown:top-[50%] peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:left-2 peer-focus:top-0.5 peer-focus:-translate-y-0 peer-focus:text-xs peer-focus:text-[#1B8EF8]" htmlFor="navigate_ui_input_55">
+          Amount
+        </label>
+      </div>
         <div className="mr-8">
-            <button className="w-full rounded-full bg-gradient-to-r from-[#52b7ff] to-[#0084ff] py-4 text-lg font-semibold uppercase tracking-wider text-white">get started</button>
+          {
+            paymentData?.status?
+          
+          <button className="w-full rounded-full bg-gradient-to-r from-[#52b7ff] to-[#0084ff] py-4 text-lg font-semibold uppercase tracking-wider text-white">verified</button>:<Link to='/desboard/payment'>  <button className="w-full rounded-full bg-gradient-to-r from-[#52b7ff] to-[#0084ff] py-4 text-lg font-semibold uppercase tracking-wider text-white">get started</button></Link>}
         </div>
     </div>
     </div>

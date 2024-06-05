@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import logo from'../../assets/logo/logo (2).png'
 
 const Navber = () => {
   const { user, logOut } = useAuth();
@@ -43,11 +44,12 @@ const Navber = () => {
           </ul>
         </div>
         <Link to="/">
-          <a className="btn btn-ghost text-xl">ProductPulse</a>
+          {/* <a   className="btn btn-ghost text-xl">ProductPulse</a> */}
+          <img className="h-24 w-32" src={logo} alt="" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{listItem}</ul>
+        <ul className="menu menu-horizontal px-1 space-x-4">{listItem}</ul>
       </div>
       {user ? (
         <div className="navbar-end">
@@ -58,7 +60,7 @@ const Navber = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                <img alt="Profile img" src={user?.photoURL} />
               </div>
             </div>
             <ul

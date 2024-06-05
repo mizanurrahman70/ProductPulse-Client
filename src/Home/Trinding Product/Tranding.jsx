@@ -6,14 +6,20 @@ import ProductDetals from "../../Pages/PRODUCT DETAILS/ProductDetals";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
-import useFeatureData from "../../Hooks/useFeatureData";
+import useTrainding from "../../Hooks/useTrainding";
+
 
 const Tranding = () => {
     const axiosPublic = useAxiosPublic();
-    const [product,refetch] = useFeatureData();
+    const [product,refetch] = useTrainding();
     const { user } = useAuth();
     console.log(product);
     const handleUpvote = async (id) => {
+      const findData=product.find((data)=>data._id === id)
+    
+    if(findData.product_ownner_email === user.email){
+      return
+    }
       try {
         const userEmail = { userEmail: user?.email };
         console.log(id,userEmail)
@@ -32,6 +38,11 @@ const Tranding = () => {
       }
     };
     const handleDownvote = async (id) => {
+      const findData=product.find((data)=>data._id === id)
+    
+    if(findData.product_ownner_email === user.email){
+      return
+    }
       try {
         const userEmail = { userEmail: user?.email };
         console.log(id,userEmail)
