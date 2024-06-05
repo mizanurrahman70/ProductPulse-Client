@@ -85,7 +85,7 @@ const Navber = () => {
       ) : (
         <div className="navbar-end">
           <Link to="/login">
-            <a className="btn ml-5 ">Login</a>
+            <a className="btn ml-5 bg-[#25AE7A] ">Login</a>
           </Link>
         </div>
       )}

@@ -49,6 +49,8 @@ const ProductDetails = () => {
       description,
       rating,
       productReviewsId,
+      product_tags
+      
     };
     console.log(reviews);
     axiosPublic.post("/revews", reviews).then((res) => {
@@ -97,19 +99,19 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="flex bg-zinc-300 rounded-xl gap-5 p-5 w-3/5 mx-auto">
+      <div className="flex bg-zinc-300 rounded-xl gap-5 p-5 w-3/5 mx-auto space-y-5">
         <div>
-          <img src={product_img} alt="" />
+          <img className="h-32 w-48" src={product_img} alt="" />
         </div>
-        <div>
-          <h1>{product_name}</h1>
-          <h1 className="space-x-5">
-            <span>around</span>
-            <span>
-              world<span>Preview</span>
-            </span>
+        <div className="">
+          <h1 className="text-2xl font-bold  mt-2">{product_name}</h1>
+          <h1 className="space-x-5 mt-2">
+          {
+                        product_tags.map((tag)=><span className="bg-[#25AE7A] p-2 rounded-xl ">{tag}</span>)
+                      }
           </h1>
-          <p>{product_details}</p>
+          <p >{product_details}</p>
+          <h1></h1>
           <button onClick={()=>{reportHandle(_id)}} className="w-32 h-14 bg-[#FF4C4C] rounded-lg flex pt-4 gap-1">
             <h1>
               <BiFlag className="mx-auto text-2xl" />

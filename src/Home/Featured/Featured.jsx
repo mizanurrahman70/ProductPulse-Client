@@ -68,22 +68,22 @@ const Featured = () => {
         {product.map((product) => (
           <>
             <div className="flex bg-zinc-300   rounded-xl gap-5 p-5 justify-around">
-             
-                <div>
-                  <div>
-                    <img src={product.product_img} alt="" />
+              <div className="">
+                    <img className="h-32" src={product.product_img} alt="" />
                   </div>
+                <div>
+                 
                   <div>
-                  <Link to={`/productdetails/${product._id}`}> <h1>{product.product_name}</h1></Link>
-                    <h1 className="space-x-5">
+                  <Link to={`/productdetails/${product._id}`}> <h1 className="text-2xl font-bold">{product.product_name}</h1></Link>
+                    <h1 className="space-x-5 mt-5">
                       {
-                        product?.product_tags.map((tag)=><span>{tag}</span>)
+                        product?.product_tags.map((tag)=><span className="bg-[#25AE7A] p-2 rounded-xl ">{tag}</span>)
                       }
                     </h1>
                   </div>
                 </div>
            
-              <div className="w-14  border-[#FF6600]  text-center">
+              <div className="w-14  border-[#FF6600]  text-center ">
                 <div>
                   <h1 onClick={() => handleUpvote(product._id)}>
                     <BiUpArrow className="mx-auto text-2xl" />

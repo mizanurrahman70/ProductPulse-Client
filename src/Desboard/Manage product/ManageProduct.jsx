@@ -120,7 +120,7 @@ const ManageProduct = () => {
                
                 
                 <th>
-                  <button onClick={()=>featuredHandle(product._id,"Featured")} className="btn btn-ghost btn-xs">{product?.Featured || 'Feature'}</button>
+                  <button onClick={()=>featuredHandle(product._id,"Featured")} className="btn btn-ghost btn-xs">{product?.Featured==='Featured'?'Featured' : 'Feature'}</button>
                 </th>
                 <th>
                   <button

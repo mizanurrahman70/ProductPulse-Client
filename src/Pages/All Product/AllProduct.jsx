@@ -112,24 +112,22 @@ const AllProduct = () => {
         {data.map((product) => (
           <>
             <div className="flex bg-zinc-300   rounded-xl gap-5 p-5 justify-around">
-              <div>
+              <div className="">
+                    <img className="h-32" src={product.product_img} alt="" />
+                  </div>
                 <div>
-                  <img src={product.product_img} alt="" />
-                </div>
-                <div>
-                  <Link to={`/productdetails/${product._id}`}>
                  
-                    <h1>{product.product_name}</h1>
-                  </Link>
-                  <h1 className="space-x-5">
-                    {product?.product_tags.map((tag) => (
-                      <span>{tag}</span>
-                    ))}
-                  </h1>
+                  <div>
+                  <Link to={`/productdetails/${product._id}`}> <h1 className="text-2xl font-bold">{product.product_name}</h1></Link>
+                    <h1 className="space-x-5 mt-5">
+                      {
+                        product?.product_tags.map((tag)=><span className="bg-[#25AE7A] p-2 rounded-xl ">{tag}</span>)
+                      }
+                    </h1>
+                  </div>
                 </div>
-              </div>
-
-              <div className="w-14  border-[#FF6600]  text-center">
+           
+              <div className="w-14  border-[#FF6600]  text-center ">
                 <div>
                   <h1 onClick={() => handleUpvote(product._id)}>
                     <BiUpArrow className="mx-auto text-2xl" />
@@ -137,7 +135,7 @@ const AllProduct = () => {
                   <p>{product.Upvote}</p>
                 </div>
                 <div>
-                  <h1 onClick={() => handleDownvote(product._id)}>
+                  <h1 onClick={()=>handleDownvote(product._id)}>
                     <BiDownArrow className="mx-auto text-2xl" />
                   </h1>
                   <p>{product.Downvote}</p>
