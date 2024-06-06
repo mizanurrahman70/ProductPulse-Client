@@ -17,6 +17,7 @@ const ProductUpdate = () => {
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     const loader=useLoaderData()
+    console.log(loader,'lodear data')
     const { product_name,
         product_img,
        

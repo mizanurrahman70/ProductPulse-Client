@@ -11,6 +11,7 @@ const Featured = () => {
   const axiosPublic = useAxiosPublic();
   const [product,refetch] = useFeatureData();
   const { user } = useAuth();
+  
   console.log(product);
   const handleUpvote = async (id) => {  
     const findData=product.find((data)=>data._id === id)

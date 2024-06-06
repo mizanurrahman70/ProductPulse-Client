@@ -21,6 +21,7 @@ import Coupon from "../Components/Coupon";
 import Payment from "../Desboard/Payment/Payment";
 import CouponUpdate from "../Components/CouponUpdate";
 import StatisticsPage from "../Desboard/Statistics Page/StatisticsPage";
+import PrivateRoute from "../Ahuntication/Private Rout/PrivateRout";
 
 
 const router = createBrowserRouter([
@@ -48,77 +49,77 @@ const router = createBrowserRouter([
    },
    {
     path:'/revews',
-    element:<RevewsFrom></RevewsFrom>
+    element:<PrivateRoute><RevewsFrom></RevewsFrom></PrivateRoute>
    },
    {
     path:'/productdetails/:id',
-    element:<ProductDetals></ProductDetals>,
-    loader:({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
+    element:<PrivateRoute><ProductDetals></ProductDetals></PrivateRoute>,
+    loader:({ params }) => fetch(`http://localhost:5000/product-single/${params.id}`)
    },
   
     ]),
   },
   {
     path:'/desboard',
-    element:<Desboard></Desboard>,
+    element:<PrivateRoute><Desboard></Desboard></PrivateRoute>,
     errorElement:<Error></Error>,
     children:([
       {
         path:'/desboard/addItem',
-      element:<AddItem></AddItem>
+      element:<PrivateRoute><AddItem></AddItem></PrivateRoute>
       },
       {
         path:'/desboard/my-profile',
-      element:<MyProfile></MyProfile>
+      element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>
       },
       {
         path:'/desboard/my-product',
-      element:<Myproduct></Myproduct>
+      element:<PrivateRoute><Myproduct></Myproduct></PrivateRoute>
       },
       {
         path: '/desboard/product_update/:id',
-        element: <ProductUpdate />,
-        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
+        element: <PrivateRoute><ProductUpdate /></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/product-single/${params.id}`)
       },
      
       {
         path: '/desboard/manage-product',
-        element: <ManageProduct />,
+        element:<PrivateRoute><ManageProduct /></PrivateRoute> ,
         
       },
       {
         path: '/desboard/reported-content',
-        element: <ReportedContent></ReportedContent>,
+        element: <PrivateRoute><ReportedContent></ReportedContent></PrivateRoute>,
         
       },
       {
         path: "/desboard/manage-user",
-        element:<ManageUers></ManageUers>,
+        element:<PrivateRoute><ManageUers></ManageUers></PrivateRoute>,
         
       },
       {
         path: "/desboard/manage-coupon",
-        element:<ManageCoupon></ManageCoupon>,
+        element:<PrivateRoute><ManageCoupon></ManageCoupon></PrivateRoute>,
         
       },
       {
         path: "/desboard/coupon",
-        element:<Coupon></Coupon>,
+        element:<PrivateRoute><Coupon></Coupon></PrivateRoute>,
         
       },
       {
         path: "/desboard/payment",
-        element:<Payment></Payment>,
+        element:<PrivateRoute><Payment></Payment></PrivateRoute>,
         
       },
       {
         path: "/desboard/Statistics-Page",
-        element:<StatisticsPage></StatisticsPage>,
+        element:<PrivateRoute><StatisticsPage></StatisticsPage></PrivateRoute>,
         
       },
       {
         path:'/desboard/coupon-update/:id',
-        element:<CouponUpdate></CouponUpdate>,
+        element:<PrivateRoute><CouponUpdate></CouponUpdate></PrivateRoute>,
         loader:({ params }) => fetch(`http://localhost:5000/coupons/${params.id}`)
        }
 

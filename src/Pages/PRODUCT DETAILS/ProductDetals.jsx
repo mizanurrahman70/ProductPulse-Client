@@ -17,6 +17,7 @@ const ProductDetails = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const loader = useLoaderData();
+  console.log('product detils',loader)
   const [revews, setRevews] = useState([]);
 
   const {
@@ -38,11 +39,11 @@ const ProductDetails = () => {
 
   const reviewsHandle = (e) => {
     e.preventDefault();
-    const form = e.target; // Correct reference to the form
-    const reviewers_name = form.Reviewer_Name.value; // Corrected variable name
+    const form = e.target; 
+    const reviewers_name = form.Reviewer_Name.value; 
     const reviewer_image = form.reviewer_image.value;
     const description = form.description.value;
-    const productReviewsId = _id; // Ensure _id is defined in the proper scope
+    const productReviewsId = _id; 
     const reviews = {
       reviewers_name,
       reviewer_image,
@@ -107,7 +108,7 @@ const ProductDetails = () => {
           <h1 className="text-2xl font-bold  mt-2">{product_name}</h1>
           <h1 className="space-x-5 mt-2">
           {
-                        product_tags.map((tag)=><span className="bg-[#25AE7A] p-2 rounded-xl ">{tag}</span>)
+                        product_tags?.map((tag)=><span className="bg-[#25AE7A] p-2 rounded-xl ">{tag}</span>)
                       }
           </h1>
           <p >{product_details}</p>
@@ -204,7 +205,7 @@ const ProductDetails = () => {
       {/* reting revews  */}
       <div>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          {revews.map((revews) => (
+          {revews?.map((revews) => (
             <SwiperSlide>
               <div className="mx-24 space-y-4 my-16 flex flex-col items-center">
                 <Rating

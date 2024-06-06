@@ -4,12 +4,13 @@ import useCards from '../../Hooks/useCards';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import useMyproduct from '../../Hooks/useMyproduct';
 
 const Myproduct = () => {
     const {user}=useAuth()
-    const [cart,refetch]=useCards()
+    const [product,refetch]=useMyproduct()
     const axiosPublic=useAxiosPublic()
-    console.log(cart)
+    console.log(product)
     const deleteHandle=(id)=>{
         console.log(id)
         Swal.fire({
@@ -60,7 +61,7 @@ const Myproduct = () => {
     <tbody>
       {/* row 1 */}
      {
-        cart.map((product,index)=> <tr key={product._id}>
+        product.map((product,index)=> <tr key={product._id}>
         <th>
       {index+1}
         </th>
