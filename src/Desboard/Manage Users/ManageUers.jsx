@@ -15,9 +15,9 @@ const ManageUers = () => {
 
   },[axiosPublic])
   const AdminStatus = (id, status) => {
-    console.log(id, status);
+  
     const newStatus = { status };
-    console.log(newStatus);
+ 
     axiosPublic.patch(`/users/${id}`, newStatus).then((res) => {
       console.log(res.data);
       setUsers(res.data);
@@ -33,7 +33,7 @@ const ManageUers = () => {
       }
     });
   };
-  console.log(users)
+
   return (
     <>
       <div className="overflow-x-auto">

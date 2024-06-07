@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const ManageCoupon = () => {
   const [coupons, refetch] = useCoupons();
   const axiosPublic=useAxiosPublic()
-  console.log(coupons);
+
   const coauponDelete=(id)=>{
     
     Swal.fire({

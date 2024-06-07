@@ -3,7 +3,7 @@ import { BiDownArrow, BiUpArrow, BiUpvote } from "react-icons/bi";
 import TitleSection from "../../Components/TitleSection";
 import ProductDetals from "../../Pages/PRODUCT DETAILS/ProductDetals";
 import useAllproduct from "../../Hooks/useAllproduct";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import useFeatureData from "../../Hooks/useFeatureData";
@@ -11,17 +11,21 @@ const Featured = () => {
   const axiosPublic = useAxiosPublic();
   const [product,refetch] = useFeatureData();
   const { user } = useAuth();
-  
-  console.log(product);
+  const navigate=useNavigate()
+
   const handleUpvote = async (id) => {  
     const findData=product.find((data)=>data._id === id)
+    if(!user?.email){
+      navigate('/login')
+     
+    }
     
     if(findData.product_ownner_email === user.email){
       return
     }
     try {
       const userEmail = { userEmail: user?.email };
-      console.log(id,userEmail)
+    
       const response = await axiosPublic.patch(
         `/product/upvote/${id}`,
         userEmail
@@ -29,22 +33,26 @@ const Featured = () => {
 
       if (response.data.modifiedCount > 0) {
       
-        console.log("Upvoted successfully!");
+       
         refetch()
       }
     } catch (error) {
-      console.error("Error upvoting the product:", error);
+   
     }
   };
   const handleDownvote = async (id) => {
     const findData=product.find((data)=>data._id === id)
+    if(!user?.email){
+      navigate('/login')
+      
+    }
     
     if(findData.product_ownner_email === user.email){
       return
     }
     try {
       const userEmail = { userEmail: user?.email };
-      console.log(id,userEmail)
+    
       const response = await axiosPublic.patch(
         `/product/Downvote/${id}`,
         userEmail
@@ -52,7 +60,7 @@ const Featured = () => {
 
       if (response.data.modifiedCount > 0) {
       
-        console.log("Upvoted successfully!");
+       
         refetch()
       }
     } catch (error) {
@@ -78,7 +86,7 @@ const Featured = () => {
                   <Link to={`/productdetails/${product._id}`}> <h1 className="text-2xl font-bold">{product.product_name}</h1></Link>
                     <h1 className="space-x-5 mt-5">
                       {
-                        product?.product_tags.map((tag)=><span className="bg-[#25AE7A] p-2 rounded-xl ">{tag}</span>)
+                        product?.product_tags?.map((tag)=><span className="bg-[#25AE7A] p-2 rounded-xl ">{tag}</span>)
                       }
                     </h1>
                   </div>

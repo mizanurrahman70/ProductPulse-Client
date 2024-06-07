@@ -7,7 +7,7 @@ const Coupon = () => {
     const couponHandle =(e)=>{
         e.preventDefault()
         const form=e.target 
-        const couponCode=form.couponCode.value 
+        const couponCode=form. couponCode.value
         const discount_amount=form.discount_amount.value
         const expire_date =form.expire_date.value
         const description=form.description.value 
@@ -27,7 +27,7 @@ const Coupon = () => {
                   });
             }
         })
-        console.log(coupon)
+     
     }
     return (
         <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>

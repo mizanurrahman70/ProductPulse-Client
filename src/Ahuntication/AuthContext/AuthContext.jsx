@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
 
       setLoading(false);
    
-      console.log("current user", carrenUser);
+     
       const users = {
         userName: carrenUser?.displayName,
         user_email: carrenUser?.email,
@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
       .then(res=>{
         console.log(res.data)
       })
-      console.log(users)
+   
       setUser(carrenUser);
       //  user use token
       if (carrenUser) {
@@ -95,7 +95,7 @@ const AuthProvider = ({ children }) => {
     })
       .then(() => {})
       .catch((error) => {
-        console.error("Error updating profile:", error);
+      
         throw error;
       });
   };

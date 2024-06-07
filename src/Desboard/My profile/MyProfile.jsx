@@ -7,7 +7,7 @@ const MyProfile = () => {
   const { user } = useAuth();
   const [paymentData,setPaymentData]=useState()
   const axiosPublic=useAxiosPublic()
-  console.log(paymentData)
+ 
 
  useEffect(()=>{
   axiosPublic.get('/payments')

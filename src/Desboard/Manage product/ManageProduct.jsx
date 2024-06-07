@@ -9,9 +9,9 @@ const ManageProduct = () => {
   const [product, refetch] = useAllproduct();
   
   const statusUpdate=(id,status)=>{
-   console.log(id,status)
+  
    const newStatus={status }
-   console.log(newStatus)
+ 
    axiosPublic.patch(`/product/${id}`,newStatus)
    .then(res=>{
     console.log(res.data)
@@ -30,9 +30,9 @@ const ManageProduct = () => {
 
   }
   const featuredHandle=(id,Featured)=>{
-   console.log(id,Featured)
+
    const newFeatured={Featured }
-   console.log(newFeatured,id)
+
    axiosPublic.patch(`/product/feature/${id}`,newFeatured)
    .then(res=>{
     console.log(res.data)
@@ -52,7 +52,7 @@ const ManageProduct = () => {
 
   }
   const deleteHandle = (id) => {
-    console.log(id);
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",

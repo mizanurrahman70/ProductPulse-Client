@@ -5,7 +5,7 @@ import useAdmin from "../Hooks/useAdmin";
 
 const Desboard = () => {
   const [isAdmin, isModerator] = useAdmin();
-  console.log(isAdmin, "modaretor", isModerator);
+
   return (
     <div className="flex container mx-auto">
       <div className="w-64 min-h-screen bg-[#25AE7A]">

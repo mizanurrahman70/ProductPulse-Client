@@ -5,7 +5,7 @@ import logo from'../../assets/logo/logo (2).png'
 
 const Navber = () => {
   const { user, logOut } = useAuth();
-  console.log(user);
+
   const listItem = (
     <>
       <li>

@@ -113,6 +113,11 @@ const router = createBrowserRouter([
         
       },
       {
+        path: "/desboard/Diacount-payment/:id",
+        element:<PrivateRoute><Payment></Payment></PrivateRoute>,
+        
+      },
+      {
         path: "/desboard/Statistics-Page",
         element:<PrivateRoute><StatisticsPage></StatisticsPage></PrivateRoute>,
         

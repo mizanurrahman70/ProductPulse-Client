@@ -4,33 +4,40 @@ import { BiDownArrow, BiUpArrow } from "react-icons/bi";
 
 import ProductDetals from "../../Pages/PRODUCT DETAILS/ProductDetals";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 
 const AllProduct = () => {
   const [product,refetch] = useAllproduct();
   const axiosPublic = useAxiosPublic();
+  const navigate=useNavigate()
 
   const { user } = useAuth();
-  console.log(product);
+ 
   const [data ,setData]=useState(product)
+  console.log(data);
+
   const handleUpvote = async (id) => {
+    if(!user?.email){
+      navigate('/login')
+    }
     const findData=product.find((data)=>data._id === id)
+  
     
     if(findData.product_ownner_email === user.email){
       return
     }
     try {
       const userEmail = { userEmail: user?.email };
-      console.log(id, userEmail);
+    
       const response = await axiosPublic.patch(
         `/product/upvote/${id}`,
         userEmail
       );
 
       if (response.data.modifiedCount > 0) {
-        console.log("Upvoted successfully!");
+       
         refetch();
       }
     } catch (error) {
@@ -38,7 +45,11 @@ const AllProduct = () => {
     }
   };
   const handleDownvote = async (id) => {
+    if(!user?.email){
+      navigate('/login')
+    }
     const findData=product.find((data)=>data._id === id)
+   
     
     if(findData.product_ownner_email === user.email){
       return
@@ -62,10 +73,10 @@ const AllProduct = () => {
   const [search,setSearch]=useState('')
   const seatchHandle =()=>{
     const searchResult =search 
-    console.log(search)
+   
     axiosPublic.get(`/search-by-tags?tags=${search}`)
     .then(res=>{
-      console.log('map',res.data)
+     
       setData(res.data)
     })
   }
@@ -73,7 +84,7 @@ const AllProduct = () => {
 
     <>
     
-   <div className="min-h-[600px] sm:px-2 px-3 mx-3 max-h-[800px] py-20 rounded-t-2xl bg-[#2A3342]">
+   <div className="min-h-[300px] sm:px-2 px-3 mx-3 max-h-[500px] py-20 rounded-t-2xl bg-[#2A3342]">
       <div className="flex justify-center flex-col">
       {/* Beautiful announcement line */}
         <div className="bg-[#1F2937] mx-auto max-w-[250px] pr-3 pl-1 py-[6px]  rounded-full gap-2 flex  items-center text-white">
@@ -85,13 +96,9 @@ const AllProduct = () => {
         {/* Banner Content */}
         <div className="mt-10 ">
           <h2 className="text-white lg:text-5xl md:text-4xl sm:text-3xl text-2xl max-w-[600px] mx-auto text-center font-extrabold ">
-            A small business is only as good as its tools.
+         Search by tag
           </h2>
-          <p className="lg:text-xl md:text-lg text-[#8896AB] mt-5 max-w-[600px] text-center mx-auto text-sm">
-            We’re different. Flex is the only saas business platform that lets
-            you run your business on one platform, seamlessly across all digital
-            channels.
-          </p>
+         
           {/* Banner action  */}
           <div className="mt-5 flex md:flex-row max-w-[450px] mx-auto justify-center gap-2 flex-col">
              <div className="md:ml-auto md:mr-0 lg:w-[55%] relative">
@@ -109,7 +116,7 @@ const AllProduct = () => {
    
     {/* card  */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {data.map((product) => (
+        {data?.map((product) => (
           <>
             <div className="flex bg-zinc-300   rounded-xl gap-5 p-5 justify-around">
               <div className="">

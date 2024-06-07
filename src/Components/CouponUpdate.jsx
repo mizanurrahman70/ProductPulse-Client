@@ -5,7 +5,7 @@ import { useLoaderData } from 'react-router-dom';
 
 const CouponUpdate = () => {
     const couponData=useLoaderData()
-    console.log('cc',couponData)
+  
     const axiosPublic=useAxiosPublic()
     const couponHandle =(e)=>{
         e.preventDefault()
@@ -30,7 +30,7 @@ const CouponUpdate = () => {
                   });
             }
         })
-        console.log(coupon)
+        
     }
     return (
         <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>

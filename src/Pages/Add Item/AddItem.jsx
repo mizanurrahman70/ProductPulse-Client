@@ -66,7 +66,7 @@ const AddItem = () => {
     };
 
     axiosPublic.post("/product", product).then((res) => {
-      console.log(res.data);
+      
       if (res.data.insertedId) {
         Swal.fire({
           position: "top-center",
