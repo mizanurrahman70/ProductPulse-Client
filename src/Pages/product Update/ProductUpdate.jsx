@@ -198,7 +198,7 @@ const ProductUpdate = () => {
               editable
             />
           </label>
-          <button className="btn">Add Item</button>
+          <button className="btn">Update Product</button>
         </form>
             </div>
         </div>

@@ -104,7 +104,7 @@ const ProductDetails = () => {
         <div>
           <img className="h-32 w-48" src={product_img} alt="" />
         </div>
-        <div className="">
+        <div className="space-y-3">
           <h1 className="text-2xl font-bold  mt-2">{product_name}</h1>
           <h1 className="space-x-5 mt-2">
           {
@@ -112,6 +112,7 @@ const ProductDetails = () => {
                       }
           </h1>
           <p >{product_details}</p>
+          <p>External Link : <span className="font-bold">{ External_Links}</span></p>
           <h1></h1>
           <button onClick={()=>{reportHandle(_id)}} className="w-32 h-14 bg-[#FF4C4C] rounded-lg flex pt-4 gap-1">
             <h1>

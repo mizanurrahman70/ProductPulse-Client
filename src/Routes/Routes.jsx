@@ -22,6 +22,7 @@ import Payment from "../Desboard/Payment/Payment";
 import CouponUpdate from "../Components/CouponUpdate";
 import StatisticsPage from "../Desboard/Statistics Page/StatisticsPage";
 import PrivateRoute from "../Ahuntication/Private Rout/PrivateRout";
+import VerifayAdmin from "../Ahuntication/Private Rout/VerifayAdmin";
 
 
 const router = createBrowserRouter([
@@ -84,27 +85,27 @@ const router = createBrowserRouter([
      
       {
         path: '/desboard/manage-product',
-        element:<PrivateRoute><ManageProduct /></PrivateRoute> ,
+        element:<PrivateRoute><VerifayAdmin><ManageProduct /></VerifayAdmin></PrivateRoute> ,
         
       },
       {
         path: '/desboard/reported-content',
-        element: <PrivateRoute><ReportedContent></ReportedContent></PrivateRoute>,
+        element: <PrivateRoute><VerifayAdmin><ReportedContent></ReportedContent></VerifayAdmin></PrivateRoute>,
         
       },
       {
         path: "/desboard/manage-user",
-        element:<PrivateRoute><ManageUers></ManageUers></PrivateRoute>,
+        element:<PrivateRoute><VerifayAdmin><ManageUers></ManageUers></VerifayAdmin></PrivateRoute>,
         
       },
       {
         path: "/desboard/manage-coupon",
-        element:<PrivateRoute><ManageCoupon></ManageCoupon></PrivateRoute>,
+        element:<PrivateRoute><VerifayAdmin><ManageCoupon></ManageCoupon></VerifayAdmin></PrivateRoute>,
         
       },
       {
         path: "/desboard/coupon",
-        element:<PrivateRoute><Coupon></Coupon></PrivateRoute>,
+        element:<PrivateRoute><VerifayAdmin><Coupon></Coupon></VerifayAdmin></PrivateRoute>,
         
       },
       {
@@ -124,7 +125,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/desboard/coupon-update/:id',
-        element:<PrivateRoute><CouponUpdate></CouponUpdate></PrivateRoute>,
+        element:<PrivateRoute><VerifayAdmin><CouponUpdate></CouponUpdate></VerifayAdmin></PrivateRoute>,
         loader:({ params }) => fetch(`http://localhost:5000/coupons/${params.id}`)
        }
 

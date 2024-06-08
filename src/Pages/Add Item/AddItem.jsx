@@ -198,7 +198,7 @@ const AddItem = () => {
               editable
             />
           </label>
-          <button className="btn">Add Item</button>
+          <button className="btn">Add Product</button>
         </form>
       </div>
     </div>

@@ -12,6 +12,7 @@ import useTrainding from "../../Hooks/useTrainding";
 const Tranding = () => {
     const axiosPublic = useAxiosPublic();
     const [product,refetch] = useTrainding();
+    console.log('transing ',product)
     const { user } = useAuth();
     const navigate=useNavigate()
   
