@@ -80,7 +80,7 @@ console.log(isValid)
               </div>
               <div className="relative w-max">
                 <input
-                  defaultValue={coupon?.couponCode}
+                  
                  onChange={handleCouponSubmit}
                   className="peer h-[50px] border-b border-[#1B8EF8] bg-blue-100 px-2 pt-4 text-[#1B8EF8] focus:outline-none dark:bg-blue-500/20"
                   type="text"
