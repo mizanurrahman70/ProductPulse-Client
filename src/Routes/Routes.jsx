@@ -55,7 +55,7 @@ const router = createBrowserRouter([
    {
     path:'/productdetails/:id',
     element:<PrivateRoute><ProductDetals></ProductDetals></PrivateRoute>,
-    loader:({ params }) => fetch(`http://localhost:5000/product-single/${params.id}`)
+    loader:({ params }) => fetch(`https://product-server-iota-gold.vercel.app/product-single/${params.id}`)
    },
   
     ]),
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
       {
         path: '/desboard/product_update/:id',
         element: <PrivateRoute><ProductUpdate /></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/product-single/${params.id}`)
+        loader: ({ params }) => fetch(`https://product-server-iota-gold.vercel.app/product-single/${params.id}`)
       },
      
       {
@@ -126,7 +126,7 @@ const router = createBrowserRouter([
       {
         path:'/desboard/coupon-update/:id',
         element:<PrivateRoute><VerifayAdmin><CouponUpdate></CouponUpdate></VerifayAdmin></PrivateRoute>,
-        loader:({ params }) => fetch(`http://localhost:5000/coupons/${params.id}`)
+        loader:({ params }) => fetch(`https://product-server-iota-gold.vercel.app/coupons/${params.id}`)
        }
 
     ])
