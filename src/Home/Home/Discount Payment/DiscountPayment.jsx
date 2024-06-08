@@ -13,6 +13,7 @@ const DiscountPayment = () => {
   const [coupons, setCoupon] = useState([]);
   const [couponInput, setCouponInput] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
+  const [isValid,setValid]=useState(false)
 
   useEffect(() => {
     const fetchCoupons = async () => {
@@ -28,16 +29,19 @@ const DiscountPayment = () => {
     const validCoupon = coupons.find((coupon) => coupon.couponCode === inputCoupon);
     if (validCoupon) {
       setValidationMessage("Coupon is valid!");
+      setValid(true)
+      console.log('valid')
     } else {
       setValidationMessage("Invalid coupon code.");
     }
   };
 
   const handleCouponSubmit = (e) => {
-    e.preventDefault();
+    console.log(e.target.value)
+    const couponInput=e.target.value
     couponCheck(couponInput);
   };
-
+console.log(isValid)
   return (
     <>
      <TitleSection heading={"Discount Membership"}></TitleSection>
@@ -77,7 +81,7 @@ const DiscountPayment = () => {
               <div className="relative w-max">
                 <input
                   defaultValue={coupon?.couponCode}
-                  disabled
+                 onChange={handleCouponSubmit}
                   className="peer h-[50px] border-b border-[#1B8EF8] bg-blue-100 px-2 pt-4 text-[#1B8EF8] focus:outline-none dark:bg-blue-500/20"
                   type="text"
                   id="amount"
@@ -93,6 +97,20 @@ const DiscountPayment = () => {
           
              
               <div className="mr-8">
+                {isValid ? (
+                 <Link to={`/desboard/Diacount-payment/${coupon?._id}`}>
+                 <button className="w-full rounded-full bg-gradient-to-r from-[#52b7ff] to-[#0084ff] py-4 text-lg font-semibold uppercase tracking-wider text-white">
+                   Get Payment
+                 </button>
+               </Link>
+                ) : (
+                 
+                    <button className="w-full rounded-full bg-gradient-to-r from-[#52b7ff] to-[#0084ff] py-4 text-lg font-semibold uppercase tracking-wider text-white">
+                    Use Coupon
+                  </button>
+                )}
+              </div>
+              {/* <div className="mr-8">
                 {coupon?.status ? (
                   <button className="w-full rounded-full bg-gradient-to-r from-[#52b7ff] to-[#0084ff] py-4 text-lg font-semibold uppercase tracking-wider text-white">
                     Verified
@@ -104,7 +122,7 @@ const DiscountPayment = () => {
                     </button>
                   </Link>
                 )}
-              </div>
+              </div> */}
             </div>
           </SwiperSlide>
         ))}

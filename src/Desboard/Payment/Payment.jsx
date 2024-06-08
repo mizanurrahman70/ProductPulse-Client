@@ -6,7 +6,7 @@ import TitleSection from '../../Components/TitleSection';
 import { useParams } from 'react-router-dom';
 const Payment = () => {
     const params=useParams()
-    
+    console.log('params',params.id)
     const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY);
     return (
         <div>

@@ -7,6 +7,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import useCoupons from "../../Hooks/useCoupons";
 
+
 const CheckoutForm = ({ couponId }) => {
  
 
@@ -103,15 +104,15 @@ const CheckoutForm = ({ couponId }) => {
         const res = await axiosPublic.post("/payments", payment);
    
 
-        if (res.data?.paymentResult?.insertedId) {
+        if (res.data?.insertedId) {
           Swal.fire({
-            position: "top-end",
+            position: "top-center",
             icon: "success",
             title: "Thank you for the taka paisa",
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate("/dashboard/paymentHistory");
+          navigate("/");
         }
       }
     }
