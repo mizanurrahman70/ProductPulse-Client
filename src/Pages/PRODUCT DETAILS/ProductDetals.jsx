@@ -17,7 +17,7 @@ const ProductDetails = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const loader = useLoaderData();
-  console.log('product detils',loader)
+  
   const [revews, setRevews] = useState([]);
 
   const {
@@ -25,7 +25,8 @@ const ProductDetails = () => {
     product_img,
     product_owner_name,
     product_owner_img,
-    product_owner_email,
+
+    product_ownner_email,
     product_details,
     External_Links,
     status,
@@ -34,28 +35,28 @@ const ProductDetails = () => {
     product_tags,
     _id,
   } = loader;
+  
 
   const [rating, setRating] = useState(0);
 
   const reviewsHandle = (e) => {
     e.preventDefault();
-    const form = e.target; 
-    const reviewers_name = form.Reviewer_Name.value; 
+    const form = e.target;
+    const reviewers_name = form.Reviewer_Name.value;
     const reviewer_image = form.reviewer_image.value;
     const description = form.description.value;
-    const productReviewsId = _id; 
+    const productReviewsId = _id;
     const reviews = {
       reviewers_name,
       reviewer_image,
       description,
       rating,
       productReviewsId,
-      product_tags
-      
+      product_tags,
     };
-    console.log(reviews);
+    
     axiosPublic.post("/revews", reviews).then((res) => {
-      if (res.data.insertedId > 0) {
+      if (res.data.insertedId) {
         Swal.fire({
           position: "top-center",
           icon: "success",
@@ -63,6 +64,7 @@ const ProductDetails = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        location.reload();
         form.reset();
       }
     });
@@ -77,14 +79,13 @@ const ProductDetails = () => {
       console.log(res.data);
     });
   }, [loader]);
-  const reportHandle=id=>{
-    console.log(id)
-    const report={report:'Report'}
-    console.log(report)
-    axiosPublic.patch(`/products/${id}`,report)
-    .then(res=>{
-      console.log(res.data)
-      if(res.data.modifiedCount>0){
+  const reportHandle = (id) => {
+    console.log(id);
+    const report = { report: "Report" };
+    console.log(report);
+    axiosPublic.patch(`/products/${id}`, report).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-center",
           icon: "success",
@@ -92,12 +93,41 @@ const ProductDetails = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-
       }
-    })
+    });
+  };
+  const handleUpvote = async (id) => {
+    if (!user?.email) {
+      navigate("/login");
+      return;
+    }
 
-  }
+    if (product_ownner_email === user.email) {
+      return;
+    }
 
+    try {
+      const userEmail = { userEmail: user?.email };
+
+      const response = await axiosPublic.patch(
+        `/product/upvote/${id}`,
+        userEmail
+      );
+
+      if (response.data.modifiedCount > 0) {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Upvoted successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        location.reload();
+      }
+    } catch (error) {
+      console.error("Error upvoting the product:", error);
+    }
+  };
   return (
     <>
       <div className="flex bg-zinc-300 rounded-xl gap-5 p-5 w-3/5 mx-auto space-y-5">
@@ -107,14 +137,21 @@ const ProductDetails = () => {
         <div className="space-y-3">
           <h1 className="text-2xl font-bold  mt-2">{product_name}</h1>
           <h1 className="space-x-5 mt-2">
-          {
-                        product_tags?.map((tag)=><span className="bg-[#25AE7A] p-2 rounded-xl ">{tag}</span>)
-                      }
+            {product_tags?.map((tag) => (
+              <span className="bg-[#25AE7A] p-2 rounded-xl ">{tag}</span>
+            ))}
           </h1>
-          <p >{product_details}</p>
-          <p>External Link : <span className="font-bold">{ External_Links}</span></p>
+          <p>{product_details}</p>
+          <p>
+            External Link : <span className="font-bold">{External_Links}</span>
+          </p>
           <h1></h1>
-          <button onClick={()=>{reportHandle(_id)}} className="w-32 h-14 bg-[#FF4C4C] rounded-lg flex pt-4 gap-1">
+          <button
+            onClick={() => {
+              reportHandle(_id);
+            }}
+            className="w-32 h-14 bg-[#FF4C4C] rounded-lg flex pt-4 gap-1"
+          >
             <h1>
               <BiFlag className="mx-auto text-2xl" />
             </h1>
@@ -122,7 +159,10 @@ const ProductDetails = () => {
           </button>
         </div>
         <div className="flex flex-col gap-3">
-          <button className="w-32 h-14 bg-[#FF6600] text-center rounded-lg flex pt-4 mx-auto gap-1">
+          <button
+            onClick={() => handleUpvote(_id)}
+            className="w-32 h-14 bg-[#FF6600] text-center rounded-lg flex pt-4 mx-auto gap-1"
+          >
             <h1>
               <BiUpArrow className="mx-auto text-2xl" />
             </h1>
@@ -209,16 +249,19 @@ const ProductDetails = () => {
           {revews?.map((revews) => (
             <SwiperSlide>
               <div className="mx-24 space-y-4 my-16 flex flex-col items-center">
+              <img className="h-28 rounded-lg" src={revews.reviewer_image} alt="" />
+              <h1 className="text-2xl text-center text-orange-500">
+                  {revews.reviewers_name}
+                </h1>
+                <p>{revews.description}</p>
                 <Rating
                   style={{ maxWidth: 180 }}
                   value={revews.rating}
                   readOnly
                 />
-                <p>{revews.description}</p>
-                <img src={revews.reviewer_image} alt="" />
-                <h1 className="text-2xl text-center text-orange-500">
-                  {revews.reviewers_name}
-                </h1>
+                
+               
+                
               </div>
             </SwiperSlide>
           ))}
