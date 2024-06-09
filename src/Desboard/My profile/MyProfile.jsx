@@ -26,7 +26,7 @@ const MyProfile = () => {
   ];
 
   return (
-    <div className="flex">
+    <div className="md:flex">
       <div className="flex flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 bg-gray-900 text-gray-100 w-1/2">
         <img
           src={user?.photoURL}

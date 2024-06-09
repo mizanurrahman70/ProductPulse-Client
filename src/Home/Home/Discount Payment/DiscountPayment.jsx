@@ -54,7 +54,7 @@ console.log(isValid)
                 <h1 className="w-[35%] text-2xl font-bold tracking-wider text-sky-900 dark:text-[#289DFF] md:text-4xl">
                   <sup className="text-2xl font-black">$</sup>
                   {coupon?.discount_amount}
-                  <sub className="text-sm tracking-tight">/mo</sub>
+                  <sub className="text-sm tracking-tight">Discount</sub>
                 </h1>
                 <div className="w-[65%] rounded-bl-full rounded-tl-full bg-gradient-to-r from-[#52b7ff] to-[#0084ff] px-4 py-4 md:px-10 md:py-5">
                   <h3 className="font-semibold tracking-wider text-white md:text-xl">Copon:{coupon?.couponCode}</h3>
