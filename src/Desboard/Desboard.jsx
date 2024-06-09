@@ -8,7 +8,7 @@ const Desboard = () => {
 
   return (
     <div className="flex container mx-auto">
-      <div className="w-64 min-h-screen bg-[#25AE7A]">
+      <div className=" md:w-64 min-h-screen bg-[#25AE7A]">
         <div>
           <h1 className="text-2xl text-white text-center">ProductPulse</h1>
          
@@ -92,7 +92,7 @@ const Desboard = () => {
           <div className="divider divider-horizontal"></div>
         </ul>
       </div>
-      <div className="flex-1 p-8 container mx-auto">
+      <div className="md:flex-1 p-8 container mx-auto">
         <Outlet></Outlet>
       </div>
      

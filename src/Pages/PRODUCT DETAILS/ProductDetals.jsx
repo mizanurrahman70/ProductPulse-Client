@@ -130,7 +130,7 @@ const ProductDetails = () => {
   };
   return (
     <>
-      <div className="flex bg-zinc-300 rounded-xl gap-5 p-5 w-3/5 mx-auto space-y-5">
+      <div className=" md:flex bg-zinc-300 rounded-xl gap-5 p-5 w-3/5 mx-auto space-y-5">
         <div>
           <img className="h-32 w-48" src={product_img} alt="" />
         </div>
